@@ -87,7 +87,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "C:/Users/Wełmiński/Documents/frontend misc/public-transport-search/node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           }

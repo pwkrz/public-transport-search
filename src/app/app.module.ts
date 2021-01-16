@@ -1,20 +1,18 @@
-import { StartLocationSelectorModule } from './start-location-selector/start-location-selector.module';
+import { StartLocationSelectorComponent } from './views/start-location/start-location-selector.component';
+import { PlaceSelectorModule } from './elements/place-selector/place-selector.module';
 import { AppRouting } from './app.routing';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, StartLocationSelectorComponent
   ],
   imports: [
     BrowserModule,
-    StartLocationSelectorModule,
     AppRouting,
-    NgbDropdownModule
+    PlaceSelectorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,7 +5,8 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-lg">!icon</span>
           </div>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+          <input autofocus type="text" class="form-control" [formControl]="placeSelectionInput"
+                  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
         </div>
         <ul ngbDropdownMenu class="list-group">
             <li ngbDropdownItem class="list-group-item">Cras justo odio</li>

@@ -1,0 +1,17 @@
+import { Component, OnInit, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-place-selector',
+  templateUrl: './place-selector.component.html',
+  styleUrls: ['./place-selector.component.css']
+})
+export class PlaceSelectorComponent implements OnInit {
+
+  @Input() layout: string;
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}

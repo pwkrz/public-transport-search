@@ -1,9 +1,18 @@
-<div class="form-group">
-    <select multiple class="form-control" id="exampleFormControlSelect2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
+<div class="row">
+    <div class="col">
+      <div ngbDropdown class="d-inline-block">
+        <div class="input-group input-group-lg">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-lg">!icon</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+        </div>
+        <ul ngbDropdownMenu class="list-group">
+            <li ngbDropdownItem class="list-group-item">Cras justo odio</li>
+            <li ngbDropdownItem class="list-group-item">Dapibus ac facilisis in</li>
+            <li ngbDropdownItem class="list-group-item">Morbi leo risus</li>
+            <li ngbDropdownItem class="list-group-item">Porta ac consectetur ac</li>
+            <li ngbDropdownItem class="list-group-item">Vestibulum at eros</li>
+        </ul>
+      </div>
+    </div>

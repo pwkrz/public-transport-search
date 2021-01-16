@@ -7,8 +7,6 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PlaceSelectorComponent implements OnInit {
 
-  @Input() layout: string;
-
   constructor() { }
 
   ngOnInit(): void {

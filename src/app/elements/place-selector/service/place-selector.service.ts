@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Suggestion } from 'src/app/models/suggestion.int';
+import { CREDS } from './../../../../../_creds';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlaceSelectorService {
 
-  private placesURL = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?key=AIzaSyCJhgzf1QrQWkonn_9FG9bUl1QLWW5xPCI&inputtype=textquery&fields=formatted_address,name,place_id,types,plus_code&input=wrocław,';
+  private placesURL = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?key=${ CREDS.placeAPIkey }&inputtype=textquery&fields=formatted_address,name,place_id,types,plus_code&input=wrocław,`;
 
   placeSuggestions: Suggestion[];
 

@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
-import { filter, distinctUntilChanged, debounceTime, tap } from 'rxjs/operators';
+import { filter, distinctUntilChanged, tap } from 'rxjs/operators';
 import { Suggestion } from 'src/app/models/suggestion.int';
 import { PlaceSelectorService } from './service/place-selector.service';
 
@@ -13,6 +13,7 @@ export class PlaceSelectorComponent implements OnInit {
   placeSelectionInput = new FormControl('');
   suggestionList: Suggestion[];
   @Input() placeholder: string;
+  @Input() onPlaceSelection: (s: Suggestion) => any;
 
   constructor(private placeSelectorService: PlaceSelectorService) {
 
@@ -37,6 +38,14 @@ export class PlaceSelectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  onSuggestionClick(s: Suggestion): any {
+    if (this.onPlaceSelection) {
+      this.onPlaceSelection(s);
+    } else {
+      throw Error('onPlaceSelection method not passed to PlaceSelectorComponent');
+    }
   }
 
 }

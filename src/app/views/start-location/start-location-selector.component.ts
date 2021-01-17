@@ -1,3 +1,4 @@
+import { Suggestion } from 'src/app/models/suggestion.int';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,6 +11,10 @@ export class StartLocationSelectorComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  startLocationSelected(s: Suggestion): any {
+    console.log(s);
   }
 
 }

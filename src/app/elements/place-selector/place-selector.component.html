@@ -14,6 +14,7 @@
                 class="list-group-item list-group-item-action"
                 style="cursor: pointer; text-overflow: ellipsis; overflow: hidden;"
                 title="{{ s.name }}, {{ s.formatted_address.replace(', Polska', '') }}"
+                (click)="onSuggestionClick(s)"
             ><b>{{ s.name }}</b>, {{ s.formatted_address.replace(', Polska', '') }}</a>
         </div>
       </div>

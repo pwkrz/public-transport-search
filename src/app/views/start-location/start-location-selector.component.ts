@@ -3,8 +3,13 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-start-location-selector',
-  templateUrl: './start-location-selector.component.html',
-  styleUrls: ['./start-location-selector.component.css']
+  template: `
+    <app-place-selector
+        style="display: block; height: 100vh"
+        [placeholder]="'Select start location'"
+        [onPlaceSelection]="startLocationSelected"
+    ></app-place-selector>
+  `,
 })
 export class StartLocationSelectorComponent implements OnInit {
 

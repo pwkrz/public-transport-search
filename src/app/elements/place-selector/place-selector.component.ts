@@ -1,5 +1,5 @@
 import { FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { filter, distinctUntilChanged, debounceTime, tap } from 'rxjs/operators';
 import { Suggestion } from 'src/app/models/suggestion.int';
 import { PlaceSelectorService } from './service/place-selector.service';
@@ -12,6 +12,7 @@ import { PlaceSelectorService } from './service/place-selector.service';
 export class PlaceSelectorComponent implements OnInit {
   placeSelectionInput = new FormControl('');
   suggestionList: Suggestion[];
+  @Input() placeholder: string;
 
   constructor(private placeSelectorService: PlaceSelectorService) {
 

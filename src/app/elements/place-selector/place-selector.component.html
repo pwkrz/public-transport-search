@@ -1,19 +1,19 @@
-<div class="row">
-    <div class="col">
-      <div ngbDropdown class="d-inline-block">
-        <div class="input-group input-group-lg">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-lg">!icon</span>
-          </div>
-          <input autofocus type="text" class="form-control" [formControl]="placeSelectionInput"
-                  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+<div class="row d-flex justify-content-center align-items-center" style="height: 100%">
+    <div class="col-6 p-0">
+      <div ngbDropdown>
+        <input autofocus type="text" class="form-control form-control-lg"
+                [formControl]="placeSelectionInput"
+                [placeholder]="placeholder"
+                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+        <div *ngIf="suggestionList && suggestionList.length"
+            ngbDropdownMenu class="list-group" 
+            style="border: none; background: none; margin: 0; padding: 0; width: 100%"
+        >
+            <a *ngFor="let s of suggestionList"
+                ngbDropdownItem
+                class="list-group-item list-group-item-action"
+                style="cursor: pointer;"
+            >{{ s.name }}</a>
         </div>
-        <ul ngbDropdownMenu class="list-group">
-            <li ngbDropdownItem class="list-group-item">Cras justo odio</li>
-            <li ngbDropdownItem class="list-group-item">Dapibus ac facilisis in</li>
-            <li ngbDropdownItem class="list-group-item">Morbi leo risus</li>
-            <li ngbDropdownItem class="list-group-item">Porta ac consectetur ac</li>
-            <li ngbDropdownItem class="list-group-item">Vestibulum at eros</li>
-        </ul>
       </div>
     </div>

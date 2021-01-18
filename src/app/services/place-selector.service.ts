@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Suggestion } from 'src/app/models/suggestion.int';
-import { CREDS } from './../../../../../_creds';
+import { CREDS } from '../../../_creds';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +29,16 @@ export class PlaceSelectorService {
           this.placeSuggestions = (resp as any).candidates;
           this.placeSuggestionsStream.next(this.placeSuggestions);
         });
+  }
+
+  saveResult(localStorageName: string, s: Suggestion): Promise<any> {
+    return new Promise((resolve, reject) => {
+      if (!!localStorage) {
+        localStorage.setItem(localStorageName, JSON.stringify(s));
+        resolve(true);
+      } else {
+        reject('localStorage API not found. Please update your browser.');
+      }
+    });
   }
 }

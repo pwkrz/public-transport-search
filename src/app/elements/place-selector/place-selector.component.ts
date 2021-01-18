@@ -1,8 +1,8 @@
 import { FormControl } from '@angular/forms';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { filter, distinctUntilChanged, tap } from 'rxjs/operators';
 import { Suggestion } from 'src/app/models/suggestion.int';
-import { PlaceSelectorService } from './service/place-selector.service';
+import { PlaceSelectorService } from '../../services/place-selector.service';
 
 @Component({
   selector: 'app-place-selector',
@@ -13,7 +13,8 @@ export class PlaceSelectorComponent implements OnInit {
   placeSelectionInput = new FormControl('');
   suggestionList: Suggestion[];
   @Input() placeholder: string;
-  @Input() onPlaceSelection: (s: Suggestion) => any;
+  @Input() localStorageName: string;
+  @Output() placeSelected: EventEmitter<Suggestion> = new EventEmitter();
 
   constructor(private placeSelectorService: PlaceSelectorService) {
 
@@ -25,7 +26,6 @@ export class PlaceSelectorComponent implements OnInit {
       }))
       .pipe( filter( q => q.length > 2 ) )
       .pipe(distinctUntilChanged())
-      // .pipe(debounceTime(400))
       .subscribe( q => {
         this.placeSelectorService.search(q);
       });
@@ -41,10 +41,12 @@ export class PlaceSelectorComponent implements OnInit {
   }
 
   onSuggestionClick(s: Suggestion): any {
-    if (this.onPlaceSelection) {
-      this.onPlaceSelection(s);
+    if (!this.localStorageName) {
+      throw Error('localStorageName not passed to PlaceSelectorComponent');
     } else {
-      throw Error('onPlaceSelection method not passed to PlaceSelectorComponent');
+      this.placeSelectorService.saveResult(this.localStorageName, s)
+        .then(r => this.placeSelected.emit(s))
+        .catch(e => { throw Error(e); });
     }
   }
 

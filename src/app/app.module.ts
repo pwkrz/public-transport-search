@@ -4,10 +4,11 @@ import { AppRouting } from './app.routing';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
+import { DestinationSelectorComponent } from './views/destination/destination-selector.component';
 
 @NgModule({
   declarations: [
-    AppComponent, StartLocationSelectorComponent
+    AppComponent, StartLocationSelectorComponent, DestinationSelectorComponent
   ],
   imports: [
     BrowserModule,

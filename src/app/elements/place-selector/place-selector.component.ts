@@ -41,13 +41,7 @@ export class PlaceSelectorComponent implements OnInit {
   }
 
   onSuggestionClick(s: Suggestion): any {
-    if (!this.localStorageName) {
-      throw Error('localStorageName not passed to PlaceSelectorComponent');
-    } else {
-      this.placeSelectorService.saveResult(this.localStorageName, s)
-        .then(r => this.placeSelected.emit(s))
-        .catch(e => { throw Error(e); });
-    }
+    this.placeSelected.emit(s);
   }
 
 }

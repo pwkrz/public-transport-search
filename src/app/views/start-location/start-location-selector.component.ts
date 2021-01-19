@@ -1,3 +1,4 @@
+import { DataStorageService } from './../../services/data-storage.service';
 import { Suggestion } from 'src/app/models/suggestion.int';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -15,14 +16,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class StartLocationSelectorComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private dataStorageService: DataStorageService) { }
 
   ngOnInit(): void {
   }
 
   startLocationSelected(s: Suggestion): any {
-    console.log(s);
-    this.router.navigate(['/destination']);
+    this.dataStorageService.saveStartLocation(s)
+      .then(r => this.router.navigate(['/destination']))
+      .catch(e => { throw Error(e); });
   }
 
 }

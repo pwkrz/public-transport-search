@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   selector: 'app-start-location-selector',
   template: `
     <app-place-selector
-        style="display: block; height: 100vh"
+        style="display: block; height: 100%"
         [placeholder]="'Select start location'"
         [localStorageName]="'start-location'"
         (placeSelected)="startLocationSelected($event)"

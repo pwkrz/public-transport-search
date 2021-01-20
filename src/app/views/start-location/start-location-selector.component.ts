@@ -1,7 +1,7 @@
-import { DataStorageService } from './../../services/data-storage.service';
+import { DataStreamsService } from './../../services/data-streams.service';
 import { Suggestion } from 'src/app/models/suggestion.int';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-start-location-selector',
@@ -17,13 +17,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class StartLocationSelectorComponent implements OnInit {
 
   constructor(private router: Router,
-              private dataStorageService: DataStorageService) { }
+              private dataStreamsService: DataStreamsService) { }
 
   ngOnInit(): void {
   }
 
   startLocationSelected(s: Suggestion): any {
-    this.dataStorageService.saveStartLocation(s)
+    this.dataStreamsService.updateStartLocationStream(s)
       .then(r => this.router.navigate(['/destination']))
       .catch(e => { throw Error(e); });
   }

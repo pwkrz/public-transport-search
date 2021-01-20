@@ -30,15 +30,4 @@ export class PlaceSelectorService {
           this.placeSuggestionsStream.next(this.placeSuggestions);
         });
   }
-
-  saveResult(localStorageName: string, s: Suggestion): Promise<any> {
-    return new Promise((resolve, reject) => {
-      if (!!localStorage) {
-        localStorage.setItem(localStorageName, JSON.stringify(s));
-        resolve(true);
-      } else {
-        reject('localStorage API not found. Please update your browser.');
-      }
-    });
-  }
 }

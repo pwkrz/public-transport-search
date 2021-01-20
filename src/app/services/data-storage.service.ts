@@ -24,14 +24,20 @@ export class DataStorageService {
     });
   }
 
-  getStartLocation(): Suggestion | false {
+  clearStartLocation(): Promise<any> {
+    return new Promise((resolve) => {
+      localStorage.removeItem(LocalStorageItems.StartLocation);
+      resolve(true);
+    });
+  }
+
+  getStartLocation(): Suggestion | null {
     const startLocationString = localStorage.getItem(LocalStorageItems.StartLocation);
     if (startLocationString) {
       const startLocation = JSON.parse(startLocationString);
-      console.log(startLocation.constructor);
       return startLocation;
     } else {
-      return false;
+      return null;
     }
   }
 }

@@ -8,6 +8,6 @@
           </li>
         </ul>
       </div>
-      <span>cokolwiek</span>
+      <span *ngIf="!!startLocation">{{ startLocation.formatted_address }}</span>
     </div>
   </nav>

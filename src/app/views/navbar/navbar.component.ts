@@ -1,3 +1,5 @@
+import { DataStreamsService } from './../../services/data-streams.service';
+import { Suggestion } from 'src/app/models/suggestion.int';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  startLocation: Suggestion | null;
+
+  constructor(private dataStreamsService: DataStreamsService) {
+    this.dataStreamsService.getStartLocationStream()
+      .subscribe(location => this.startLocation = location);
+  }
 
   ngOnInit(): void {
   }

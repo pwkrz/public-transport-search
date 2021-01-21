@@ -16,7 +16,7 @@ export class DataStreamsService {
     return this.startLocationStream.asObservable();
   }
 
-  async updateStartLocationStream(s: Suggestion | null): Promise<void> {
+  async updateStartLocationStream(s: Suggestion | null = null): Promise<void> {
     const dataStorageMethodWrapper = !!s
         ? () => this.dataStorageService.saveStartLocation(s)
         : () => this.dataStorageService.clearStartLocation();

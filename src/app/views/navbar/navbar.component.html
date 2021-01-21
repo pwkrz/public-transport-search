@@ -8,7 +8,9 @@
           </li>
         </ul>
       </div>
-      <div *ngIf="!!startLocation" class="input-group input-group-sm col-3 start-location">
+      <div *ngIf="!!startLocation" class="input-group input-group-sm col-3 start-location"
+            (click)="changeStartLocation()"
+      >
         <div class="input-group-prepend position-relative">
           <div class="input-group-text">
             <span class="show-on-hover">change</span>

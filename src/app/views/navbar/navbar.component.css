@@ -1,5 +1,6 @@
 .start-location {
     position: relative;
+    cursor: pointer;
 }
 .start-location .show-on-hover {
     position: absolute;

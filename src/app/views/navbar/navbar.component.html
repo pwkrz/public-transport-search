@@ -8,7 +8,7 @@
           </li>
         </ul>
       </div>
-      <div class="input-group input-group-sm col-3 start-location">
+      <div *ngIf="!!startLocation" class="input-group input-group-sm col-3 start-location">
         <div class="input-group-prepend position-relative">
           <div class="input-group-text">
             <span class="show-on-hover">change</span>
@@ -17,7 +17,7 @@
         </div>
         <a href="#" class="form-control d-inline-block text-truncate text-info"
           aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-          <u>{{ startLocation.name }}</u>
+          <u title="{{ startLocation.name }}">{{ startLocation.name }}</u>
         </a>
       </div>
     </div>

@@ -1,0 +1,13 @@
+.start-location {
+    position: relative;
+}
+.start-location .show-on-hover {
+    position: absolute;
+    opacity: 0;
+    background: inherit;
+    width: calc(100% - 1rem);
+}
+.start-location:hover .show-on-hover {
+    opacity: 1;
+    transition: .5s;
+}

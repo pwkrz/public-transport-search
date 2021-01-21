@@ -8,6 +8,17 @@
           </li>
         </ul>
       </div>
-      <span *ngIf="!!startLocation">{{ startLocation.formatted_address }}</span>
+      <div class="input-group input-group-sm col-3 start-location">
+        <div class="input-group-prepend position-relative">
+          <div class="input-group-text">
+            <span class="show-on-hover">change</span>
+            <span class="hide-on-hover">start location</span>
+          </div>
+        </div>
+        <a href="#" class="form-control d-inline-block text-truncate text-info"
+          aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+          <u>{{ startLocation.name }}</u>
+        </a>
+      </div>
     </div>
   </nav>

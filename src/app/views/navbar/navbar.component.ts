@@ -22,7 +22,8 @@ export class NavbarComponent implements OnInit {
   }
 
   changeStartLocation(): any {
-    const shouldChangeStartLocation = true; // @TODO Modal - start location change confirmation.
+    // tslint:disable-next-line:max-line-length
+    const shouldChangeStartLocation = confirm('Are you sure you want to change the start location?'); // @TODO Modal - start location change confirmation.
     if (shouldChangeStartLocation) {
       this.dataStreamsService.updateStartLocationStream()
         .then(r => this.router.navigate(['/start-location']));

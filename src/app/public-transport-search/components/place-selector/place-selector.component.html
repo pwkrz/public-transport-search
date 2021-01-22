@@ -1,21 +1,19 @@
-<div class="row d-flex justify-content-center align-items-center" style="height: 100%">
-    <div class="col-6 p-0">
-      <div ngbDropdown>
-        <input autofocus type="text" class="form-control form-control-lg"
-                [formControl]="placeSelectionInput"
-                [placeholder]="placeholder"
-                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-        <div *ngIf="suggestionList && suggestionList.length"
-            ngbDropdownMenu class="list-group" 
-            style="border: none; background: none; margin: 0; padding: 0; width: 100%"
-        >
-            <a *ngFor="let s of suggestionList"
-                ngbDropdownItem
-                class="list-group-item list-group-item-action"
-                style="cursor: pointer; text-overflow: ellipsis; overflow: hidden;"
-                title="{{ s.name }}, {{ s.formatted_address.replace(', Polska', '') }}"
-                (click)="onSuggestionClick(s)"
-            ><b>{{ s.name }}</b>, {{ s.formatted_address.replace(', Polska', '') }}</a>
-        </div>
-      </div>
+<div class="col-6 p-0">
+  <div ngbDropdown>
+    <input autofocus type="text" class="form-control form-control-lg"
+            [formControl]="placeSelectionInput"
+            [placeholder]="placeholder"
+            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+    <div *ngIf="suggestionList && suggestionList.length"
+        ngbDropdownMenu class="list-group" 
+        style="border: none; background: none; margin: 0; padding: 0; width: 100%"
+    >
+        <a *ngFor="let s of suggestionList"
+            ngbDropdownItem
+            class="list-group-item list-group-item-action"
+            style="cursor: pointer; text-overflow: ellipsis; overflow: hidden;"
+            title="{{ s.name }}, {{ s.formatted_address.replace(', Polska', '') }}"
+            (click)="onSuggestionClick(s)"
+        ><b>{{ s.name }}</b>, {{ s.formatted_address.replace(', Polska', '') }}</a>
     </div>
+  </div>

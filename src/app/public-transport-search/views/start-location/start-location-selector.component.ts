@@ -6,8 +6,11 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-start-location-selector',
   template: `
+    <h1 class="display-4 mt-4">Select a start location</h1>
+    <p class="lead mb-4">
+      This location will be used as the departure point in all your public transport route searches.<br>You can change the start location at any point.
+    </p>
     <app-place-selector
-        style="display: block; height: 100%"
         [placeholder]="'Select start location'"
         [localStorageName]="'start-location'"
         (placeSelected)="startLocationSelected($event)"

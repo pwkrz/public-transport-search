@@ -1,8 +1,8 @@
 import { FormControl } from '@angular/forms';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { filter, distinctUntilChanged, tap } from 'rxjs/operators';
-import { Suggestion } from './../../models/suggestion.int';
-import { PlaceSelectorService } from './../../services/place-selector.service';
+import { Suggestion } from '../../models/suggestion.int';
+import { PlaceSelectorService } from '../../services/place-selector.service';
 
 @Component({
   selector: 'app-place-selector',

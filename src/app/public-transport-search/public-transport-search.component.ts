@@ -1,3 +1,5 @@
+import { DataStreamsService } from './services/data-streams.service';
+import { DataStorageService } from './services/data-storage.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,9 +11,14 @@ export class PublicTransportSearchComponent implements OnInit {
 
   title: 'Public Transport Search';
 
-  constructor() { }
+  constructor(private dataStorageService: DataStorageService,
+              private dataStreamsService: DataStreamsService) { }
 
   ngOnInit(): void {
+    const startLocation = this.dataStorageService.getStartLocation();
+    if (!!startLocation) {
+      this.dataStreamsService.updateStartLocationStream(startLocation);
+    }
   }
 
 }

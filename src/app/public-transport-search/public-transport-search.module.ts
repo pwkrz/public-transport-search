@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { PublicTransportSearchComponent } from './public-transport-search.component';
 import { StartLocationSelectorComponent } from './views/start-location/start-location-selector.component';
 import { DestinationSelectorComponent } from './views/destination/destination-selector.component';
-import { NavbarComponent } from './views/navbar/navbar.component';
-import { PlaceSelectorModule } from './elements/place-selector/place-selector.module';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { PlaceSelectorModule } from './components/place-selector/place-selector.module';
 
 @NgModule({
   declarations: [

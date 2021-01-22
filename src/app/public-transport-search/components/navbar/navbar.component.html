@@ -8,18 +8,19 @@
           </li>
         </ul>
       </div>
-      <div *ngIf="!!startLocation" class="input-group input-group-sm col-3 start-location"
-            (click)="changeStartLocation()"
+      <div class="input-group input-group-sm col-3 start-location"
+            (click)="startLocation && changeStartLocation()"
       >
         <div class="input-group-prepend position-relative">
-          <div class="input-group-text">
-            <span class="show-on-hover">change</span>
+          <div class="input-group-text bg-info">
+            <span *ngIf="!!startLocation" class="show-on-hover">change</span>
             <span class="hide-on-hover">start location</span>
           </div>
         </div>
-        <small class="form-control d-inline-block text-truncate text-info"
+        <small class="form-control d-inline-block text-truncate text-info bg-dark"
           aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-          <u title="{{ startLocation.name }} ({{ startLocation.formatted_address }})">{{ startLocation.name }}</u>
+          <span *ngIf="!startLocation" class="text-secondary">-- not set --</span>
+          <u *ngIf="!!startLocation" title="{{ startLocation.name }} ({{ startLocation.formatted_address }})">{{ startLocation.name }}</u>
         </small>
       </div>
     </div>

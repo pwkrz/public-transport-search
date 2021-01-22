@@ -1,5 +1,5 @@
 import { DataStreamsService } from './../../services/data-streams.service';
-import { Suggestion } from 'src/app/models/suggestion.int';
+import { Suggestion } from './../../models/suggestion.int';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 

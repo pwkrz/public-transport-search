@@ -1,4 +1,4 @@
-import { PlaceSelectorService } from '../../services/place-selector.service';
+import { PlaceSelectorService } from './../../services/place-selector.service';
 import { PlaceSelectorComponent } from './place-selector.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

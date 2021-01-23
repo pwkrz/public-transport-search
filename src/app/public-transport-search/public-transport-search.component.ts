@@ -4,8 +4,12 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-public-transport-search',
-  templateUrl: './public-transport-search.component.html',
-  styleUrls: ['./public-transport-search.component.css']
+  template: `
+    <app-navbar></app-navbar>
+    <div class="container full-height" style="flex: 1 1 auto;">
+        <router-outlet></router-outlet>
+    </div>
+  `
 })
 export class PublicTransportSearchComponent implements OnInit {
 

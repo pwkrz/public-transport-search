@@ -27,7 +27,7 @@ export class StartLocationSelectorComponent implements OnInit {
 
   startLocationSelected(s: Suggestion): any {
     this.dataStreamsService.updateStartLocationStream(s)
-      .then(r => this.router.navigate(['/destination']))
+      .then(() => this.router.navigate(['/destination']))
       .catch(e => { throw Error(e); });
   }
 

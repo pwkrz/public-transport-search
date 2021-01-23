@@ -1,6 +1,6 @@
 import { DataStreamsService } from '../../services/data-streams.service';
 import { Suggestion } from '../../models/suggestion.int';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,24 +10,16 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  startLocation: Suggestion | null;
+  @Input() startLocation: Suggestion | null;
+  @Output() changeStartLocation: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private dataStreamsService: DataStreamsService,
-              private router: Router) {
-    this.dataStreamsService.getStartLocationStream()
-      .subscribe(location => this.startLocation = location);
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  changeStartLocation(): any {
-    // tslint:disable-next-line:max-line-length
-    const shouldChangeStartLocation = confirm('Are you sure you want to change the start location?'); // @TODO Modal - start location change confirmation.
-    if (shouldChangeStartLocation) {
-      this.dataStreamsService.updateStartLocationStream()
-        .then(r => this.router.navigate(['/start-location']));
-    }
+  onChangeStartLocation(): any {
+    this.changeStartLocation.emit(true);
   }
 
 }

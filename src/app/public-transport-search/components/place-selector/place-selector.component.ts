@@ -17,7 +17,7 @@ export class PlaceSelectorComponent implements OnInit {
   @Output() placeSelected: EventEmitter<Suggestion> = new EventEmitter();
 
   // @TODO keyboard controls
-  
+
   constructor(private placeSelectorService: PlaceSelectorService) {
 
     this.placeSelectionInput.valueChanges

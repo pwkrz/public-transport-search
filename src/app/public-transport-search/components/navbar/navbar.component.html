@@ -4,7 +4,7 @@
             (click)="startLocation && onChangeStartLocation()"
       >
         <div class="input-group-prepend position-relative">
-          <div class="input-group-text">
+          <div class="input-group-text text-secondary">
             <span *ngIf="!!startLocation" class="show-on-hover">change</span>
             <span class="hide-on-hover">start location</span>
           </div>
@@ -12,7 +12,7 @@
         <small class="form-control d-inline-block text-truncate text-info"
           aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
           <span *ngIf="!startLocation" class="text-secondary">-- not set --</span>
-          <u *ngIf="!!startLocation" title="{{ startLocation.name }} ({{ startLocation.formatted_address }})">{{ startLocation.name }}</u>
+          <u *ngIf="!!startLocation" title="{{ startLocation.name }} ({{ startLocation.formatted_address }})">{{ getStartLocationName() }}</u>
         </small>
       </div>
     </div>

@@ -22,4 +22,16 @@ export class NavbarComponent implements OnInit {
     this.changeStartLocation.emit(true);
   }
 
+  getStartLocationName(): string {
+    const wordsInName = this.startLocation.name.split(' ').length;
+    switch (wordsInName) {
+      case 0:
+        return this.startLocation.formatted_address;
+      case 1:
+        return this.startLocation.name + ', ' + this.startLocation.formatted_address;
+      default:
+        return this.startLocation.name;
+    }
+  }
+
 }

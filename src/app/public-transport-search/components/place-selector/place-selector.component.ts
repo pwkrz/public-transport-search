@@ -16,6 +16,8 @@ export class PlaceSelectorComponent implements OnInit {
   @Input() localStorageName: string;
   @Output() placeSelected: EventEmitter<Suggestion> = new EventEmitter();
 
+  // @TODO keyboard controls
+  
   constructor(private placeSelectorService: PlaceSelectorService) {
 
     this.placeSelectionInput.valueChanges

@@ -13,7 +13,6 @@ export class PlaceSelectorComponent implements OnInit {
   placeSelectionInput = new FormControl('');
   suggestionList: Suggestion[];
   @Input() placeholder: string;
-  @Input() localStorageName: string;
   @Output() placeSelected: EventEmitter<Suggestion> = new EventEmitter();
 
   // @TODO keyboard controls

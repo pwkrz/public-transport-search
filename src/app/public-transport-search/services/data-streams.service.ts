@@ -9,14 +9,18 @@ import { Suggestion } from '../models/suggestion.int';
 export class DataStreamsService {
 
   startLocationStream: Subject<Suggestion | null> = new Subject();
+  destinationStream: Subject<Suggestion | null> = new Subject();
 
   constructor(private dataStorageService: DataStorageService) { }
 
   getStartLocationStream(): Observable<Suggestion | null> {
     return this.startLocationStream.asObservable();
   }
+  getDestinationStream(): Observable<Suggestion | null> {
+    return this.destinationStream.asObservable();
+  }
 
-  async updateStartLocationStream(s: Suggestion | null = null): Promise<void> {
+  updateStartLocationStream(s: Suggestion | null = null): Promise<any> {
     const dataStorageMethodWrapper = !!s
         ? () => this.dataStorageService.saveStartLocation(s)
         : () => this.dataStorageService.clearStartLocation();
@@ -26,5 +30,9 @@ export class DataStreamsService {
               this.startLocationStream.next(s);
               return r;
             });
+  }
+
+  updateDestination(s: Suggestion | null = null): void {
+    this.destinationStream.next(s);
   }
 }

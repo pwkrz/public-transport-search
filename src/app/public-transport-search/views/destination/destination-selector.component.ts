@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Suggestion } from '../../models/suggestion.int';
+import { DataStreamsService } from '../../services/data-streams.service';
 
 @Component({
   selector: 'app-destination-selector',
@@ -10,16 +12,22 @@ import { Component, OnInit } from '@angular/core';
     <app-place-selector
         class="d-flex justify-content-end"
         [placeholder]="'Provide destination'"
+        (placeSelected)="onDestinationSelection($event)"
     ></app-place-selector>
   `,
   styles: [
   ]
 })
-export class DestinationSelectorComponent implements OnInit {
+export class DestinationSelectorComponent implements OnDestroy {
 
-  constructor() { }
+  constructor(private dataStreamsService: DataStreamsService) { }
 
-  ngOnInit(): void {
+  ngOnDestroy(): void {
+    this.dataStreamsService.updateDestination();
+  }
+
+  onDestinationSelection(s: Suggestion): void {
+    this.dataStreamsService.updateDestination(s);
   }
 
 }

@@ -1,0 +1,10 @@
+<ngb-accordion  *ngFor="let rSuggestion of routeSuggestions"
+                #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <ngb-panel title="{{ rSuggestion.title }}">
+        <ng-template ngbPanelContent>
+            <ul *ngFor="let step of rSuggestion.steps" class="list-group">
+                <li class="list-group-item list-group-item-action">{{ step }}</li>
+            </ul>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>

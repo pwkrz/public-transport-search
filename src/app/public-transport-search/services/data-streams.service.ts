@@ -1,6 +1,6 @@
 import { DataStorageService } from './data-storage.service';
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { Suggestion } from '../models/suggestion.int';
 
 @Injectable({
@@ -8,8 +8,8 @@ import { Suggestion } from '../models/suggestion.int';
 })
 export class DataStreamsService {
 
-  startLocationStream: Subject<Suggestion | null> = new Subject();
-  destinationStream: Subject<Suggestion | null> = new Subject();
+  startLocationStream: BehaviorSubject<Suggestion | null> = new BehaviorSubject(null);
+  destinationStream: BehaviorSubject<Suggestion | null> = new BehaviorSubject(null);
 
   constructor(private dataStorageService: DataStorageService) { }
 
@@ -32,7 +32,10 @@ export class DataStreamsService {
             });
   }
 
-  updateDestination(s: Suggestion | null = null): void {
-    this.destinationStream.next(s);
+  updateDestination(s: Suggestion | null = null): Promise<boolean> {
+    return new Promise(resolve => {
+      this.destinationStream.next(s);
+      resolve(true);
+    });
   }
 }

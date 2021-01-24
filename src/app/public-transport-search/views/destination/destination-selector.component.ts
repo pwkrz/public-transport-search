@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { Suggestion } from '../../models/suggestion.int';
 import { DataStreamsService } from '../../services/data-streams.service';
 
@@ -18,16 +19,14 @@ import { DataStreamsService } from '../../services/data-streams.service';
   styles: [
   ]
 })
-export class DestinationSelectorComponent implements OnDestroy {
+export class DestinationSelectorComponent {
 
-  constructor(private dataStreamsService: DataStreamsService) { }
-
-  ngOnDestroy(): void {
-    this.dataStreamsService.updateDestination();
-  }
+  constructor(private dataStreamsService: DataStreamsService,
+              private router: Router) { }
 
   onDestinationSelection(s: Suggestion): void {
-    this.dataStreamsService.updateDestination(s);
+    this.dataStreamsService.updateDestination(s)
+        .then(() => this.router.navigate(['/routes']));
   }
 
 }

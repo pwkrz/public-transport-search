@@ -1,3 +1,4 @@
+import { RoutesComponent } from './views/routes/routes.component';
 import { DestinationGuard } from './view-guards/destination.guard';
 import { StartLocationGuard } from './view-guards/start-location.guard';
 import { DestinationSelectorComponent } from './views/destination/destination-selector.component';
@@ -8,6 +9,7 @@ const routesConfig: Routes = [
   {path: '', redirectTo: '/start-location', pathMatch: 'full' },
   {path: 'start-location', canActivate: [StartLocationGuard], component: StartLocationSelectorComponent },
   {path: 'destination', canActivate: [DestinationGuard], component: DestinationSelectorComponent },
+  {path: 'routes', canActivate: [DestinationGuard], component: RoutesComponent },
   {path: '**', redirectTo: '/start-location', pathMatch: 'full' },
 ];
 

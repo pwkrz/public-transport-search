@@ -1,5 +1,5 @@
 export interface Suggestion {
-    formatted_address: string;
-    name: string;
+    description: string;
     place_id: string;
+    [key: string]: any;
 }

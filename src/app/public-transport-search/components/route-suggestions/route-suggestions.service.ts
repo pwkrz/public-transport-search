@@ -1,4 +1,3 @@
-import { RouteSuggestionsModule } from './route-suggestions.module';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CREDS } from '_creds';
@@ -8,7 +7,7 @@ import { CREDS } from '_creds';
 })
 export class RouteSuggestionsService {
 
-  private directionsURL = `https://maps.googleapis.com/maps/api/directions/json?key=${ CREDS.placeAPIkey }mode=transit&alternatives=true&origin=place_id:<<startID>>&destination=place_id:<<endID>>`;
+  private directionsURL = `https://maps.googleapis.com/maps/api/directions/json?key=${ CREDS.placeAPIkey }&mode=transit&alternatives=true&origin=place_id:<<startID>>&destination=place_id:<<endID>>`;
 
   constructor(private http: HttpClient) { }
 
@@ -17,7 +16,9 @@ export class RouteSuggestionsService {
     console.log(ids, finalURL);
     return new Promise((resolve, reject) => {
       this.http.get(finalURL)
-          .subscribe(resp => console.log(resp));
+          .subscribe((resp: any) => {
+            resolve(resp.routes.map(el => el.legs[0]));
+          });
     });
   }
 }

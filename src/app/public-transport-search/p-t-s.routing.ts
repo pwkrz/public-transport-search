@@ -9,7 +9,7 @@ const routesConfig: Routes = [
   {path: '', redirectTo: '/start-location', pathMatch: 'full' },
   {path: 'start-location', canActivate: [StartLocationGuard], component: StartLocationSelectorComponent },
   {path: 'destination', canActivate: [DestinationGuard], component: DestinationSelectorComponent },
-  {path: 'routes', canActivate: [DestinationGuard], component: RoutesComponent },
+  {path: 'routes', component: RoutesComponent },
   {path: '**', redirectTo: '/start-location', pathMatch: 'full' },
 ];
 

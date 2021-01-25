@@ -33,7 +33,6 @@ export class PlaceSelectorComponent implements OnInit {
 
     this.placeSelectorService.getPlaceSuggestionsStream()
       .subscribe( s => {
-        console.log(s);
         this.suggestionList = s;
       });
   }

@@ -11,7 +11,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule, // @TODO
     NgbDropdownModule
   ],
   providers: [ PlaceSelectorService ],

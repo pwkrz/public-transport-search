@@ -5,11 +5,11 @@ import { Suggestion } from './../models/suggestion.int';
 import { CREDS } from '../../../../_creds';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' // @TODO
 })
 export class PlaceSelectorService {
 
-  private placesURL = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?key=${ CREDS.placeAPIkey }&inputtype=textquery&fields=formatted_address,name,place_id,types,plus_code&input=wrocław,`;
+  private placesURL = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${ CREDS.placeAPIkey }&input=wroc%C5%82aw,`;
 
   placeSuggestions: Suggestion[];
 
@@ -26,7 +26,7 @@ export class PlaceSelectorService {
     this.http
         .get(this.placesURL + query)
         .subscribe(resp => {
-          this.placeSuggestions = (resp as any).candidates;
+          this.placeSuggestions = (resp as any).predictions;
           this.placeSuggestionsStream.next(this.placeSuggestions);
         });
   }

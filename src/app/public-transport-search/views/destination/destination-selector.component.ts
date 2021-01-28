@@ -1,32 +1,39 @@
-import { Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Suggestion } from '../../models/suggestion.int';
 import { DataStreamsService } from '../../services/data-streams.service';
 
 @Component({
   selector: 'app-destination-selector',
-  template: `
-    <h1 class="display-4 mt-5 pt-5 text-right">Where do you want to go?</h1>
-    <p class="lead mb-4 text-right">
-      After you choose the destination, we will show you several alternative public transport routes that can get you there.
-    </p>
-    <app-place-selector
-        class="d-flex justify-content-end"
-        [placeholder]="'Provide destination'"
-        (placeSelected)="onDestinationSelection($event)"
-    ></app-place-selector>
-  `,
-  styles: [
-  ]
+  templateUrl: './destination-selector.component.html'
 })
 export class DestinationSelectorComponent {
 
+  startLocation: Suggestion;
+  destination: Suggestion | any;
+  @ViewChild('routeSuggestions') routeSuggestionsBox: ElementRef;
+
   constructor(private dataStreamsService: DataStreamsService,
-              private router: Router) { }
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
+    this.dataStreamsService.getStartLocationStream()
+                    .subscribe(start => this.startLocation = start);
+    this.activatedRoute.queryParams
+                    .subscribe(qParams => {
+      if (qParams.place_id && qParams.name) {
+        this.destination = qParams;
+        setTimeout(() => this.routeSuggestionsBox.nativeElement.scrollIntoView(true, {behavior: 'smooth'}));
+      }
+    });
+  }
 
   onDestinationSelection(s: Suggestion): void {
     this.dataStreamsService.updateDestination(s)
-        .then(() => this.router.navigate(['/routes']));
+        .then(() => {
+          const place_id = s.place_id;
+          const name = s.description.replace(', Polska', '') || 'unspecified';
+          this.router.navigate([], {queryParams: {name, place_id}});
+        });
   }
 
 }

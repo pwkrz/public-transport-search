@@ -1,0 +1,25 @@
+<h1 class="display-4 mt-5 pt-5 text-right">Where do you want to go?</h1>
+<p class="lead mb-4 text-right">
+    After you choose the destination, we will show you several alternative public transport routes that can get you there.
+</p>
+<div>
+    <app-place-selector
+        class="d-flex justify-content-end"
+        [placeholder]="'Provide destination'"
+        (placeSelected)="onDestinationSelection($event)"
+    ></app-place-selector>
+</div>
+<div *ngIf="!!startLocation && !!destination"
+    #routeSuggestions
+    class="d-flex flex-column align-items-center">
+    <h1 class="h4 mt-5 pt-5 text-center">Suggested routes for trip:</h1>
+    <p class="col-8">
+        <small><b>from: </b>{{ startLocation.description.replace(', Polska', '') }}
+          <br><b>to: </b>{{ destination.name }}</small>
+    </p>
+    <div class="col-8">
+        <app-route-suggestions  [startID]="startLocation.place_id"
+                                [endID]="destination.place_id"
+        ></app-route-suggestions>
+    </div>
+</div>

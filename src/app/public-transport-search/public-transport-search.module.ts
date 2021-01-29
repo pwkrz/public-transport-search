@@ -1,5 +1,3 @@
-import { RouteSuggestionsModule } from './components/route-suggestions/route-suggestions.module';
-import { RoutesComponent } from './views/routes/routes.component';
 import { PTSRouting } from './p-t-s.routing';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,12 +9,11 @@ import { PlaceSelectorModule } from './components/place-selector/place-selector.
 
 @NgModule({
   declarations: [
-    PublicTransportSearchComponent, StartLocationSelectorComponent, DestinationSelectorComponent, NavbarComponent, RoutesComponent
+    PublicTransportSearchComponent, StartLocationSelectorComponent, DestinationSelectorComponent, NavbarComponent
   ],
   imports: [
     CommonModule,
     PlaceSelectorModule,
-    RouteSuggestionsModule,
     PTSRouting,
   ],
   exports: [PublicTransportSearchComponent]

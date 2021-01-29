@@ -9,6 +9,16 @@
     width: calc(100% - 1rem);
 }
 .start-location:hover .show-on-hover {
+    text-align: right;
     opacity: 1;
+    transition: .5s;
+}
+.start-location .hide-on-hover {
+    text-align: right;
+    opacity: 1;
+    background: inherit;
+}
+.start-location:hover .hide-on-hover {
+    opacity: 0;
     transition: .5s;
 }

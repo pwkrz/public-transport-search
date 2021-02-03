@@ -1,12 +1,24 @@
-<ng-container *ngIf="routeSuggestions && routeSuggestions.length">
-    <ngb-accordion  *ngFor="let rSuggestion of routeSuggestions"
-                    #acc="ngbAccordion" activeIds="ngb-panel-0">
-        <ngb-panel title="{{ rSuggestion.titleTime + ' -- ' + rSuggestion.titleOverview.join(' > ') }}">
-            <ng-template ngbPanelContent>
-                <ul *ngFor="let step of rSuggestion.steps" class="list-group">
-                    <li class="list-group-item list-group-item-action">{{ step.text }}</li>
-                </ul>
-            </ng-template>
-        </ngb-panel>
-    </ngb-accordion>
-</ng-container>
+<div class="modal-header">
+    <div>
+        <h5 class="card-title">Suggested routes for trip to:</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ destinationName }}</h6>
+    </div>
+    <button type="button" class="close" aria-label="Close"
+            (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <ng-container *ngIf="routeSuggestions && routeSuggestions.length">
+        <ngb-accordion  *ngFor="let rSuggestion of routeSuggestions"
+                        #acc="ngbAccordion" activeIds="ngb-panel-0">
+            <ngb-panel title="{{ rSuggestion.titleTime + ' -- ' + rSuggestion.titleOverview }}">
+                <ng-template ngbPanelContent>
+                    <ul *ngFor="let step of rSuggestion.steps" class="list-group">
+                        <li class="list-group-item list-group-item-action">{{ step.text }}</li>
+                    </ul>
+                </ng-template>
+            </ngb-panel>
+        </ngb-accordion>
+    </ng-container>        
+</div>

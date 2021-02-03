@@ -41,6 +41,7 @@ export class PlaceSelectorComponent implements OnInit {
   }
 
   onSuggestionClick(s: Suggestion): any {
+    this.suggestionList = [];
     this.placeSelected.emit(s);
   }
 

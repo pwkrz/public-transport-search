@@ -15,7 +15,7 @@ export class RouteSuggestionsComponent implements OnInit {
   routeSuggestions: Array<{time: string, overview: string, steps: string[]}>;
 
   constructor(private routeSuggestionService: RouteSuggestionsService,
-              activeModal: NgbActiveModal) { }
+              public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
     this.routeSuggestionService.getRouteSuggestions({

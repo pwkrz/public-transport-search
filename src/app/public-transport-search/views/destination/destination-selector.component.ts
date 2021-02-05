@@ -7,8 +7,7 @@ import { RouteSuggestionsComponent } from '../../components/route-suggestions/ro
 
 @Component({
   selector: 'app-destination-selector',
-  templateUrl: './destination-selector.component.html',
-  styleUrls: ['./destination-selector.component.css']
+  templateUrl: './destination-selector.component.html'
 })
 export class DestinationSelectorComponent {
 

@@ -1,4 +1,4 @@
-<div class="modal-header px-5 bg-dark text-light">
+<div class="modal-header px-5 bg-dark text-light border-bottom-0">
     <div class="d-flex flex-column">
         <span class="text-muted">Routes to:</span>
         <span>{{ destinationName }}</span>
@@ -8,7 +8,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<div class="modal-body bg-dark">
+<div class="modal-body route-suggestions bg-dark">
     <ng-container *ngIf="routeSuggestions && routeSuggestions.length">
         <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" closeOthers="{{true}}">
             <ngb-panel  *ngFor="let rSuggestion of routeSuggestions; index as i"

@@ -6,7 +6,10 @@ body {
 .full-height {
     height: 100%;
 }
-.panel-expanded .panel-arrow {
+.route-suggestions .panel-expanded .panel-arrow {
     display: inline-block;
     transform: rotate(90deg) translateX(50%);
+}
+.route-suggestions .card-header {
+    cursor: pointer;
 }

@@ -25,12 +25,13 @@ export class RouteSuggestionsComponent implements OnInit {
         .then(response => {
           console.log(response);
           this.routeSuggestions = response.map(el => {
-            const titleTime = el.departure_time
-              ? `${el.departure_time.text} - ${el.arrival_time.text} (${el.duration.text})`
-              : el.duration.text;
+            const titleTime = el.duration.text;
             const titleOverview = el.steps
               .filter(step => step.travel_mode === 'TRANSIT')
-              .map(step => `${step.transit_details.line.vehicle.name} ${step.transit_details.line.short_name} (stops: ${step.transit_details.num_stops})`).join(' > ');
+              .map(step => ({
+                vehicle: step.transit_details.line.vehicle.name,
+                line: step.transit_details.line.short_name
+              }));
             const steps = el.steps.map(step => ({text: step.html_instructions}));
             return {titleTime, titleOverview, steps};
         }); });

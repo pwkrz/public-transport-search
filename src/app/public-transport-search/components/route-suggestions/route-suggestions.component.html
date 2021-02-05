@@ -13,8 +13,11 @@
         <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" closeOthers>
             <ngb-panel *ngFor="let rSuggestion of routeSuggestions; index as i" class="bg-dark text-light" [id]="'ngb-panel-' + i">
                 <ng-template ngbPanelHeader>
-                    <div (click)="acc.toggle('ngb-panel-' + i)" class="d-flex w-100 justify-content-between">
-                        <h5>{{ rSuggestion.titleOverview }}</h5>
+                    <div (click)="acc.toggle('ngb-panel-' + i)">
+                        <span   *ngFor="let tOverview of rSuggestion.titleOverview"
+                                class="btn btn-outline-secondary mr-2">{{ tOverview.vehicle }}
+                                <span class="badge badge-primary">{{ tOverview.line }}</span>
+                        </span>
                         <small>{{ rSuggestion.titleTime }}</small>
                     </div>
                 </ng-template>

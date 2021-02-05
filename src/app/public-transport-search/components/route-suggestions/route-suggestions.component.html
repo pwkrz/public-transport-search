@@ -1,21 +1,30 @@
-<div class="modal-header">
-    <div>
-        <h5 class="card-title">Suggested routes for trip to:</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{ destinationName }}</h6>
+<div class="modal-header px-5 bg-light">
+    <div class="d-flex flex-column">
+        <span class="text-muted">Routes to:</span>
+        <span>{{ destinationName }}</span>
     </div>
     <button type="button" class="close" aria-label="Close"
             (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<div class="modal-body">
+<div class="modal-body bg-dark">
     <ng-container *ngIf="routeSuggestions && routeSuggestions.length">
-        <ngb-accordion  *ngFor="let rSuggestion of routeSuggestions"
-                        #acc="ngbAccordion" activeIds="ngb-panel-0">
-            <ngb-panel title="{{ rSuggestion.titleTime + ' -- ' + rSuggestion.titleOverview }}">
+        <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" closeOthers>
+            <ngb-panel *ngFor="let rSuggestion of routeSuggestions; index as i" class="bg-dark text-light" [id]="'ngb-panel-' + i">
+                <ng-template ngbPanelHeader>
+                    <div (click)="acc.toggle('ngb-panel-' + i)" class="d-flex w-100 justify-content-between">
+                        <h5>{{ rSuggestion.titleOverview }}</h5>
+                        <small>{{ rSuggestion.titleTime }}</small>
+                    </div>
+                </ng-template>
                 <ng-template ngbPanelContent>
-                    <ul *ngFor="let step of rSuggestion.steps" class="list-group">
-                        <li class="list-group-item list-group-item-action">{{ step.text }}</li>
+                    <ul class="list-group list-group-flush">
+                        <li *ngFor="let step of rSuggestion.steps"
+                            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                            {{ step.text }}
+                            <span class="badge badge-primary badge-pill">14</span>
+                        </li>
                     </ul>
                 </ng-template>
             </ngb-panel>

@@ -19,19 +19,38 @@
                         <span class="panel-arrow mr-3">&#8674;</span>
                         <span   *ngFor="let tOverview of rSuggestion.titleOverview"
                                 class="btn btn-outline-secondary mr-2">{{ tOverview.vehicle }}
-                                <span class="badge badge-primary">{{ tOverview.line }}</span>
+                                <span class="badge badge-primary badge-pill">{{ tOverview.line }}</span>
                         </span>
                         <small class="align-top">{{ rSuggestion.titleTime }}</small>
                     </div>
                 </ng-template>
                 <ng-template ngbPanelContent>
-                    <ul class="list-group list-group-flush">
-                        <li *ngFor="let step of rSuggestion.steps"
-                            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                            {{ step.text }}
-                            <span class="badge badge-primary badge-pill">14</span>
+                    <table class="table">
+                        <tbody>
+                            <ng-template *ngFor="let step of rSuggestion.steps; index as stepIdx">
+                                <tr *ngIf="step.travel_mode == 'TRANSIT'; else walkingBox">
+                                    <th scope="row">{{ stepIdx+1 }}</th><td>{{ step.vehicle }}</td>
+                                    <td><b>{{ step.line }}</b></td>
+                                    <td>@stops: {{step.stops}}</td>
+                                </tr>
+                                <ng-template #walkingBox>
+                                    <tr>
+                                        <th scope="row">{{ stepIdx+1 }}</th><td>{{ step.instructions }}</td>
+                                    </tr>
+                                </ng-template>
+                            </ng-template>
+                        </tbody>
+                    </table>
+                    <!-- <ol class="list-group list-group-flush">
+                        <li *ngFor="let step of rSuggestion.steps; index as stepIdx"
+                            class="list-group-item list-group-item-action">
+                            <span *ngIf="step.travel_mode == 'TRANSIT'; else walkingBlock">
+                                {{ stepIdx+1 }} {{ step.vehicle }} <b>{{ step.line }}</b>
+                                <span class="badge badge-light">stops: {{step.stops}}</span>
+                            </span>
+                            <ng-template #walkingBlock>{{ stepIdx+1 }} {{ step.instructions }}</ng-template>
                         </li>
-                    </ul>
+                    </ol> -->
                 </ng-template>
             </ngb-panel>
         </ngb-accordion>

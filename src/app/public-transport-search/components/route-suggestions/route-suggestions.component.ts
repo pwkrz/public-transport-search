@@ -18,14 +18,11 @@ export class RouteSuggestionsComponent implements OnInit {
               public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
-    this.routeSuggestionService.getRouteSuggestions({
-        startID: this.startID,
-        endID: this.endID
-      })
+    this.routeSuggestionService.getRouteSuggestions(this.startID, this.endID)
         .then(response => {
-          console.log(response);
           this.routeSuggestions = response;
-        });
+        })
+        .catch(err => console.log(err)); // @TODO error handling
   }
 
 }

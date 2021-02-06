@@ -25,20 +25,18 @@
                     </div>
                 </ng-template>
                 <ng-template ngbPanelContent>
-                    <table class="table">
+                    <table class="table table-sm table-hover table-borderless">
                         <tbody>
-                            <ng-template *ngFor="let step of rSuggestion.steps; index as stepIdx">
-                                <tr *ngIf="step.travel_mode == 'TRANSIT'; else walkingBox">
+                            <tr *ngFor="let step of rSuggestion.steps; index as stepIdx">
+                                <ng-template [ngIf]="step.travel_mode == 'TRANSIT'" [ngIfElse]="walkingBlock">
                                     <th scope="row">{{ stepIdx+1 }}</th><td>{{ step.vehicle }}</td>
                                     <td><b>{{ step.line }}</b></td>
-                                    <td>@stops: {{step.stops}}</td>
-                                </tr>
-                                <ng-template #walkingBox>
-                                    <tr>
-                                        <th scope="row">{{ stepIdx+1 }}</th><td>{{ step.instructions }}</td>
-                                    </tr>
+                                    <td>stops: {{step.stops}}</td>
                                 </ng-template>
-                            </ng-template>
+                                <ng-template #walkingBlock>
+                                    <th scope="row">{{ stepIdx+1 }}</th><td>{{ step.instructions }}</td>
+                                </ng-template>
+                            </tr>
                         </tbody>
                     </table>
                     <!-- <ol class="list-group list-group-flush">

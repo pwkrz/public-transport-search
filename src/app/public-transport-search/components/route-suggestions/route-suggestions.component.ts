@@ -4,15 +4,14 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-route-suggestions',
-  templateUrl: './route-suggestions.component.html',
-  styleUrls: ['./route-suggestions.component.css']
+  templateUrl: './route-suggestions.component.html'
 })
 export class RouteSuggestionsComponent implements OnInit {
 
   @Input() startID: string;
   @Input() endID: string;
   @Input() destinationName: string;
-  routeSuggestions: Array<{time: string, overview: string, steps: string[]}>;
+  routeSuggestions: Array<{titleTime: string, titleOverview: string, steps: string[]}>;
 
   constructor(private routeSuggestionService: RouteSuggestionsService,
               public activeModal: NgbActiveModal) { }

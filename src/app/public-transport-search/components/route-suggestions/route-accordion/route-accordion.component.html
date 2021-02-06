@@ -1,0 +1,39 @@
+<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" closeOthers="true">
+    <ngb-panel  *ngFor="let rSuggestion of routeSuggestions; index as i"
+                [id]="'ngb-panel-' + i"
+                [cardClass]="acc.isExpanded('ngb-panel-' + i) && 'panel-expanded'">
+        <ng-template ngbPanelHeader>
+            <div (click)="acc.toggle('ngb-panel-' + i)">
+                <span class="panel-arrow mr-3">&#8674;</span>
+                <span   *ngFor="let tOverview of rSuggestion.titleOverview"
+                        class="btn btn-outline-secondary mr-2">{{ tOverview.vehicle }}
+                        <span class="badge badge-primary badge-pill">{{ tOverview.line }}</span>
+                </span>
+                <small class="align-top">{{ rSuggestion.titleTime }}</small>
+            </div>
+        </ng-template>
+        <ng-template ngbPanelContent>
+            <table class="table table-sm table-hover table-borderless">
+                <tbody>
+                    <tr *ngFor="let step of rSuggestion.steps">
+                        <ng-template [ngIf]="step.travel_mode == 'TRANSIT'" [ngIfElse]="walkingBlock">
+                            <td class="text-right pr-3 w-25">
+                                <span class="badge badge-secondary mr-2">{{ step.departure_time }}</span>
+                                <span class="badge badge-light">~ {{ step.time }}</span>
+                            </td>
+                            <td>
+                                <small class="mr-2">{{ step.vehicle }} <b>{{ step.line }}</b> ({{ step.destination }}) -- <b>{{ step.stops }}</b> stops -- to <b>{{ step.arrival_stop }}</b></small>
+                            </td>
+                        </ng-template>
+                        <ng-template #walkingBlock>
+                            <td class="text-right pr-3 w-25">
+                                <span class="badge badge-light">~ {{ step.time }}</span>
+                            </td>
+                            <td><small>{{ step.instructions }}</small></td>
+                        </ng-template>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>

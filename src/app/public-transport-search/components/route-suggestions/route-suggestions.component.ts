@@ -38,6 +38,8 @@ export class RouteSuggestionsComponent implements OnInit {
                 result.departure_time = step.transit_details.departure_time.text;
                 result.arrival_time = step.transit_details.arrival_time.text;
                 result.stops = step.transit_details.num_stops;
+                result.destination = step.transit_details.headsign;
+                result.arrival_stop = step.transit_details.arrival_stop.name;
               }
               return result;
             });

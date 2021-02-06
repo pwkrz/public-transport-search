@@ -24,29 +24,8 @@ export class RouteSuggestionsComponent implements OnInit {
       })
         .then(response => {
           console.log(response);
-          this.routeSuggestions = response.map(el => {
-            const titleTime = el.duration.text;
-            const steps = el.steps.map(step => {
-              const result: {[key: string]: string} = {
-                travel_mode: step.travel_mode,
-                instructions: step.html_instructions.replace(', Polska', ''),
-                time: step.duration.text
-              };
-              if (step.travel_mode === 'TRANSIT') {
-                result.vehicle = step.transit_details.line.vehicle.name;
-                result.line = step.transit_details.line.short_name;
-                result.departure_time = step.transit_details.departure_time.text;
-                result.arrival_time = step.transit_details.arrival_time.text;
-                result.stops = step.transit_details.num_stops;
-                result.destination = step.transit_details.headsign;
-                result.arrival_stop = step.transit_details.arrival_stop.name;
-              }
-              return result;
-            });
-            const titleOverview = steps
-              .filter(step => step.travel_mode === 'TRANSIT');
-            return {titleTime, titleOverview, steps};
-        }); });
+          this.routeSuggestions = response;
+        });
   }
 
 }

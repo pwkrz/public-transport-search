@@ -9,7 +9,7 @@ import { Suggestion } from './models/suggestion.int';
   template: `
     <app-navbar [startLocation]="startLocation"
                 (changeStartLocation)="changeStartLocation($event)"></app-navbar>
-    <div class="container full-height" style="flex: 1 1 auto;">
+    <div class="container full-height pt-5">
         <router-outlet></router-outlet>
     </div>
   `

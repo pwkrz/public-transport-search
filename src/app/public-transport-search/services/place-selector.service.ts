@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Suggestion } from './../models/suggestion.int';
 import { CREDS } from '../../../../_creds';
+import { pluck, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root' // @TODO
@@ -21,13 +22,15 @@ export class PlaceSelectorService {
     return this.placeSuggestionsStream.asObservable();
   }
 
-  search(query: string): any {
+  searchQuery(query: string): any {
 
-    this.http
-        .get(this.placesURL + query)
-        .subscribe(resp => {
-          this.placeSuggestions = (resp as any).predictions;
-          this.placeSuggestionsStream.next(this.placeSuggestions);
-        });
+    return this.http
+        .get(this.placesURL + query).pipe(
+          pluck('predictions')
+        );
+        // .subscribe(resp => {
+        //   this.placeSuggestions = (resp as any).predictions;
+        //   this.placeSuggestionsStream.next(this.placeSuggestions);
+        // });
   }
 }

@@ -1,19 +1,19 @@
 <div class="col-6 p-0">
-  <div ngbDropdown>
-    <input autofocus type="text" class="form-control form-control-lg"
+  <input autofocus type="text" class="form-control form-control-lg"
             [formControl]="placeSelectionInput"
             [placeholder]="placeholder"
             aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+  <div ngbDropdown autoClose="true">
     <div *ngIf="suggestionList && suggestionList.length"
-        ngbDropdownMenu class="list-group" 
-        style="border: none; background: none; margin: 0; padding: 0; width: 100%"
+        ngbDropdownMenu
+        style="display: inline-block; margin: 0; padding: 0; width: 100%"
     >
-        <a *ngFor="let s of suggestionList"
+        <button *ngFor="let s of suggestionList; first as isFirst;"
+            [focus]="isFirst"
             ngbDropdownItem
-            class="list-group-item list-group-item-action"
-            style="cursor: pointer; text-overflow: ellipsis; overflow: hidden;"
+            style="text-overflow: ellipsis; overflow: hidden;"
             title="{{ s.description.replace(', Polska', '') }}"
             (click)="onSuggestionClick(s)"
-        >{{ s.description.replace(', Polska', '') }}</a>
+        >{{ s.description.replace(', Polska', '') }}</button>
     </div>
   </div>

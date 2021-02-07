@@ -6,8 +6,7 @@ import { PlaceSelectorService } from '../../services/place-selector.service';
 
 @Component({
   selector: 'app-place-selector',
-  templateUrl: './place-selector.component.html',
-  styleUrls: ['./place-selector.component.css']
+  templateUrl: './place-selector.component.html'
 })
 export class PlaceSelectorComponent implements OnInit {
   placeSelectionInput = new FormControl('');

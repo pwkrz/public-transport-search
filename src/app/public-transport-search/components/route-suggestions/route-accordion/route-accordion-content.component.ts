@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-route-accordion-content',
   template: `
-  <table class="table table-sm table-hover table-borderless">
+  <table class="table table-sm table-hover table-bordered table-secondary">
     <tbody>
         <tr *ngFor="let step of steps">
             <ng-template [ngIf]="step.travel_mode == 'TRANSIT'" [ngIfElse]="walkingBlock">

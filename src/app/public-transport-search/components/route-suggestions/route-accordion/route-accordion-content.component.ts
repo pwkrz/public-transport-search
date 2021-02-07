@@ -8,16 +8,20 @@ import { Component, Input, OnInit } from '@angular/core';
         <tr *ngFor="let step of steps">
             <ng-template [ngIf]="step.travel_mode == 'TRANSIT'" [ngIfElse]="walkingBlock">
                 <td class="text-right pr-3 w-25">
-                    <span class="badge badge-secondary mr-2">{{ step.departure_time }}</span>
-                    <span class="badge badge-light">~ {{ step.time }}</span>
+                    <span class="badge badge-warning mr-2">{{ step.departure_time }}</span>
+                    <span class="badge badge-secondary">~ {{ step.time }}</span>
                 </td>
                 <td>
-                    <small class="mr-2">{{ step.vehicle }} <b>{{ step.line }}</b> ({{ step.destination }}) -- <b>{{ step.stops }}</b> stops -- to <b>{{ step.arrival_stop }}</b></small>
+                    <small class="mr-2">{{ step.vehicle }}</small>
+                    <span class="badge badge-primary mr-2">{{ step.line }} ({{ step.destination }})</span>
+                    <small class="mr-2">{{ step.stops }} stops to</small>
+                    <span class="badge badge-primary mr-2">{{ step.arrival_stop }}</span>
+                    <span class="badge badge-warning">{{ step.arrival_time }}</span>
                 </td>
             </ng-template>
             <ng-template #walkingBlock>
                 <td class="text-right pr-3 w-25">
-                    <span class="badge badge-light">~ {{ step.time }}</span>
+                    <span class="badge badge-secondary">~ {{ step.time }}</span>
                 </td>
                 <td><small>{{ step.instructions }}</small></td>
             </ng-template>

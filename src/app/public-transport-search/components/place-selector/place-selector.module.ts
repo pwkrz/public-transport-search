@@ -1,4 +1,4 @@
-import { PlaceSelectorService } from '../../services/place-selector.service';
+import { PlaceSelectorService } from './place-selector.service';
 import { PlaceSelectorComponent } from './place-selector.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,10 +10,8 @@ import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [ PlaceSelectorComponent ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     FormsModule,
     HttpClientModule, // @TODO
-    // NgbDropdownModule
     NgbTypeaheadModule,
   ],
   providers: [ PlaceSelectorService ],

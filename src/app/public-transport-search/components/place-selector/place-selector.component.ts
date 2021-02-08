@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { distinctUntilChanged, tap, debounceTime, switchMap, catchError } from 'rxjs/operators';
 import { Suggestion } from '../../models/suggestion.int';
-import { PlaceSelectorService } from '../../services/place-selector.service';
+import { PlaceSelectorService } from './place-selector.service';
 import { Observable, of } from 'rxjs';
 import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 

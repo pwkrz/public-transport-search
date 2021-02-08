@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Suggestion } from './../models/suggestion.int';
 import { CREDS } from '../../../../_creds';
-import { pluck, tap } from 'rxjs/operators';
+import { map, pluck, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root' // @TODO
@@ -26,7 +26,11 @@ export class PlaceSelectorService {
 
     return this.http
         .get(this.placesURL + query).pipe(
-          pluck('predictions')
+          pluck('predictions'),
+          map((p: any) => p.map(el => ({
+            ...el,
+            description: el.description.replace(', Polska', '')
+          })))
         );
   }
 }

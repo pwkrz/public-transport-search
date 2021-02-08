@@ -1,6 +1,6 @@
 <fieldset>
   <div class="form-group place-selector">
-    <input  id="typeahead-http" type="text" class="form-control form-control-lg"
+    <input  id="typeahead-http" type="text" class="form-control form-control-lg" #inputField
             [(ngModel)]="model" (selectItem)="onSuggestionClick($event)"
             [class.is-invalid]="searchFailed" [ngbTypeahead]="search"
             [placeholder]="placeholder" [resultTemplate]="rt"

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { distinctUntilChanged, tap, debounceTime, switchMap, catchError } from 'rxjs/operators';
 import { Suggestion } from '../../models/suggestion.int';
 import { PlaceSelectorService } from './place-selector.service';
@@ -9,16 +9,22 @@ import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-place-selector',
   templateUrl: './place-selector.component.html'
 })
-export class PlaceSelectorComponent implements OnInit {
+export class PlaceSelectorComponent implements AfterViewInit {
 
   @Input() placeholder: string;
   @Output() placeSelected: EventEmitter<Suggestion> = new EventEmitter();
+
+  @ViewChild('inputField') inputField: ElementRef;
 
   model: any;
   searching = false;
   searchFailed = false;
 
   constructor(private placeSelectorService: PlaceSelectorService) {}
+
+  ngAfterViewInit(): void {
+    this.inputField.nativeElement.focus();
+  }
 
   search = (text$: Observable<string>) =>
     text$.pipe(
@@ -39,9 +45,6 @@ export class PlaceSelectorComponent implements OnInit {
       }),
       tap(() => this.searching = false)
     )
-
-  ngOnInit(): void {
-  }
 
   onSuggestionClick(e: NgbTypeaheadSelectItemEvent<Suggestion>): any {
     e.preventDefault();

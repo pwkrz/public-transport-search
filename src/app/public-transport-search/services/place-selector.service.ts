@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Suggestion } from './../models/suggestion.int';
 import { CREDS } from '../../../../_creds';
-import { map, pluck, tap } from 'rxjs/operators';
+import { map, pluck } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root' // @TODO

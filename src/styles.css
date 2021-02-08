@@ -13,3 +13,11 @@ body {
 .route-suggestions .card-header {
     cursor: pointer;
 }
+.place-selector ngb-typeahead-window.dropdown-menu {
+    width: 98%;
+    left: 1% !important;
+}
+.place-selector ngb-typeahead-window.dropdown-menu .dropdown-item {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

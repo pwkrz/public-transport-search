@@ -4,6 +4,7 @@ import { filter, distinctUntilChanged, tap, debounceTime, switchMap, catchError 
 import { Suggestion } from '../../models/suggestion.int';
 import { PlaceSelectorService } from '../../services/place-selector.service';
 import { Observable, of } from 'rxjs';
+import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-place-selector',
@@ -27,9 +28,7 @@ export class PlaceSelectorComponent implements OnInit {
       distinctUntilChanged(),
       tap(() => this.searching = true),
       switchMap(term => {
-        console.log('tu', this);
         return this.placeSelectorService.searchQuery(term).pipe(
-          tap(resp => console.log('switch', resp)),
           tap(() => this.searchFailed = false),
           catchError(() => {
             this.searchFailed = true;
@@ -39,33 +38,13 @@ export class PlaceSelectorComponent implements OnInit {
       tap(() => this.searching = false)
     )
 
-  
-
-    // this.placeSelectionInput.valueChanges
-    //   .pipe( tap(q => {
-    //     if (q.length <= 2) {
-    //       this.suggestionList = [];
-    //     }
-    //   }))
-    //   .pipe( filter( q => q.length > 2 ) )
-    //   .pipe(distinctUntilChanged())
-    //   .subscribe( q => {
-    //     this.placeSelectorService.search(q);
-    //   });
-
-    // this.placeSelectorService.getPlaceSuggestionsStream()
-    //   .subscribe( s => {
-    //     this.suggestionList = s;
-    //   });
-  // }
-
   ngOnInit(): void {
   }
 
-  onSuggestionClick(s: Suggestion): any {
-    console.log('onSuggestionClick', s);
-    // this.suggestionList = [];
-    // this.placeSelected.emit(s);
+  onSuggestionClick(e: NgbTypeaheadSelectItemEvent<Suggestion>): any {
+    e.preventDefault();
+    this.model = '';
+    this.placeSelected.emit(e.item);
   }
 
 }

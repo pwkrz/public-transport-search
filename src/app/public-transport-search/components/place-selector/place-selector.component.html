@@ -1,30 +1,13 @@
 <div class="col-6 p-0">
   <fieldset>
-    <div class="form-group">
-      <input id="typeahead-http" type="text" class="form-control mx-sm-3" [class.is-invalid]="searchFailed" [(ngModel)]="model" [ngbTypeahead]="search" [placeholder]="placeholder"
-      [resultTemplate]="rt" (selectItem)="onSuggestionClick($event)" />
+    <div class="form-group place-selector">
+      <input  id="typeahead-http" type="text" class="form-control form-control-lg mx-sm-3"
+              [class.is-invalid]="searchFailed" [(ngModel)]="model" [ngbTypeahead]="search" [placeholder]="placeholder" [resultTemplate]="rt" (selectItem)="onSuggestionClick($event)" [placement]="['bottom-left', 'top-left']" />
       <small *ngIf="searching" class="form-text text-muted">searching...</small>
       <div class="invalid-feedback" *ngIf="searchFailed">Sorry, suggestions could not be loaded.</div>
       <ng-template #rt let-r="result" let-t="term">
-        <ngb-highlight [result]="r.description" [term]="t"></ngb-highlight>
+        <ngb-highlight [result]="r.description" [title]="r.description" [term]="t" class="w-100"></ngb-highlight>
       </ng-template>
     </div>
-  </fieldset>  
-  <!-- <input autofocus type="text" class="form-control form-control-lg"
-            [formControl]="placeSelectionInput"
-            [placeholder]="placeholder"
-            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-  <div ngbDropdown autoClose="true">
-    <div *ngIf="suggestionList && suggestionList.length"
-        ngbDropdownMenu
-        style="display: inline-block; margin: 0; padding: 0; width: 100%"
-    >
-        <button *ngFor="let s of suggestionList; first as isFirst;"
-            [focus]="isFirst"
-            ngbDropdownItem
-            style="text-overflow: ellipsis; overflow: hidden;"
-            title="{{ s.description.replace(', Polska', '') }}"
-            (click)="onSuggestionClick(s)"
-        >{{ s.description.replace(', Polska', '') }}</button>
-    </div> -->
+  </fieldset>
 </div>

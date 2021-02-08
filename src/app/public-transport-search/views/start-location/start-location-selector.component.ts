@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
         This location will be used as the departure point in all your public transport route searches.<br>You can change the start location at any point.
       </p>
       <app-place-selector
+          class="col-6 p-0"
           [placeholder]="'Provide start location'"
           (placeSelected)="startLocationSelected($event)"
       ></app-place-selector>

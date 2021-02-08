@@ -1,13 +1,11 @@
-<div class="col-6 p-0">
-  <fieldset>
-    <div class="form-group place-selector">
-      <input  id="typeahead-http" type="text" class="form-control form-control-lg mx-sm-3"
-              [class.is-invalid]="searchFailed" [(ngModel)]="model" [ngbTypeahead]="search" [placeholder]="placeholder" [resultTemplate]="rt" (selectItem)="onSuggestionClick($event)" [placement]="['bottom-left', 'top-left']" />
-      <small *ngIf="searching" class="form-text text-muted">searching...</small>
-      <div class="invalid-feedback" *ngIf="searchFailed">Sorry, suggestions could not be loaded.</div>
-      <ng-template #rt let-r="result" let-t="term">
-        <ngb-highlight [result]="r.description" [title]="r.description" [term]="t" class="w-100"></ngb-highlight>
-      </ng-template>
-    </div>
-  </fieldset>
-</div>
+<fieldset>
+  <div class="form-group place-selector">
+    <input  id="typeahead-http" type="text" class="form-control form-control-lg"
+            [class.is-invalid]="searchFailed" [(ngModel)]="model" [ngbTypeahead]="search" [placeholder]="placeholder" [resultTemplate]="rt" (selectItem)="onSuggestionClick($event)" [placement]="['bottom-left', 'top-left']" />
+    <small *ngIf="searching" class="form-text text-muted">searching...</small>
+    <div class="invalid-feedback" *ngIf="searchFailed">Sorry, suggestions could not be loaded.</div>
+    <ng-template #rt let-r="result" let-t="term">
+      <ngb-highlight [result]="r.description" [title]="r.description" [term]="t" class="w-100"></ngb-highlight>
+    </ng-template>
+  </div>
+</fieldset>

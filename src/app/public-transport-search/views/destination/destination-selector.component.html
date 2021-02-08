@@ -1,13 +1,11 @@
-<main class="full-height d-flex flex-column pt-5">
+<main class="full-height d-flex flex-column align-items-end pt-5">
     <h1 class="display-4 text-right">Where do you want to go?</h1>
     <p class="lead mb-4 text-right">
         After you choose the destination, we will show you several alternative public transport routes that can get you there.
     </p>
-    <div>
-        <app-place-selector
-            class="d-flex justify-content-end"
-            [placeholder]="'Provide destination'"
-            (placeSelected)="onDestinationSelection($event)"
-        ></app-place-selector>
-    </div>
+    <app-place-selector
+        class="col-6 p-0"
+        [placeholder]="'Provide destination'"
+        (placeSelected)="onDestinationSelection($event)"
+    ></app-place-selector>
 </main>

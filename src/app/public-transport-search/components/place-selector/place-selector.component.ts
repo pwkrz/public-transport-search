@@ -1,6 +1,5 @@
-import { FormControl } from '@angular/forms';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { filter, distinctUntilChanged, tap, debounceTime, switchMap, catchError } from 'rxjs/operators';
+import { distinctUntilChanged, tap, debounceTime, switchMap, catchError } from 'rxjs/operators';
 import { Suggestion } from '../../models/suggestion.int';
 import { PlaceSelectorService } from '../../services/place-selector.service';
 import { Observable, of } from 'rxjs';
@@ -11,8 +10,7 @@ import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './place-selector.component.html'
 })
 export class PlaceSelectorComponent implements OnInit {
-  // placeSelectionInput = new FormControl('');
-  // suggestionList: Suggestion[];
+
   @Input() placeholder: string;
   @Output() placeSelected: EventEmitter<Suggestion> = new EventEmitter();
 
@@ -28,12 +26,16 @@ export class PlaceSelectorComponent implements OnInit {
       distinctUntilChanged(),
       tap(() => this.searching = true),
       switchMap(term => {
-        return this.placeSelectorService.searchQuery(term).pipe(
-          tap(() => this.searchFailed = false),
-          catchError(() => {
-            this.searchFailed = true;
-            return of([]);
-          }));
+        if (term.length <= 2) {
+          return of([]);
+        } else {
+          return this.placeSelectorService.searchQuery(term).pipe(
+            tap(() => this.searchFailed = false),
+            catchError(() => {
+              this.searchFailed = true;
+              return of([]);
+            }));
+        }
       }),
       tap(() => this.searching = false)
     )

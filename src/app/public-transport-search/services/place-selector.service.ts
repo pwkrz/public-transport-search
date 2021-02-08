@@ -28,9 +28,5 @@ export class PlaceSelectorService {
         .get(this.placesURL + query).pipe(
           pluck('predictions')
         );
-        // .subscribe(resp => {
-        //   this.placeSuggestions = (resp as any).predictions;
-        //   this.placeSuggestionsStream.next(this.placeSuggestions);
-        // });
   }
 }

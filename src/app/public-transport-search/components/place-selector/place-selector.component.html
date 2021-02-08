@@ -1,8 +1,11 @@
 <fieldset>
   <div class="form-group place-selector">
     <input  id="typeahead-http" type="text" class="form-control form-control-lg"
-            [class.is-invalid]="searchFailed" [(ngModel)]="model" [ngbTypeahead]="search" [placeholder]="placeholder" [resultTemplate]="rt" (selectItem)="onSuggestionClick($event)" [placement]="['bottom-left', 'top-left']" />
-    <small *ngIf="searching" class="form-text text-muted">searching...</small>
+            [(ngModel)]="model" (selectItem)="onSuggestionClick($event)"
+            [class.is-invalid]="searchFailed" [ngbTypeahead]="search"
+            [placeholder]="placeholder" [resultTemplate]="rt"
+            [placement]="['bottom-left', 'top-left']" />
+    <small *ngIf="searching" class="pr-3 form-text text-muted">searching...</small>
     <div class="invalid-feedback" *ngIf="searchFailed">Sorry, suggestions could not be loaded.</div>
     <ng-template #rt let-r="result" let-t="term">
       <ngb-highlight [result]="r.description" [title]="r.description" [term]="t" class="w-100"></ngb-highlight>

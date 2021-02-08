@@ -1,8 +1,11 @@
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { Router } from '@angular/router';
 import { DataStreamsService } from './services/data-streams.service';
 import { DataStorageService } from './services/data-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { Suggestion } from './models/suggestion.int';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-public-transport-search',
@@ -20,7 +23,8 @@ export class PublicTransportSearchComponent implements OnInit {
 
   constructor(private dataStorageService: DataStorageService,
               private dataStreamsService: DataStreamsService,
-              private router: Router) {
+              private router: Router,
+              private modalService: NgbModal) {
                 this.dataStreamsService.getStartLocationStream()
                       .subscribe(location => this.startLocation = location);
               }
@@ -36,12 +40,15 @@ export class PublicTransportSearchComponent implements OnInit {
     if (!shouldChange) {
       return;
     }
-    // tslint:disable-next-line:max-line-length
-    const shouldChangeStartLocation = confirm('Are you sure you want to change the start location?'); // @TODO Modal - start location change confirmation.
-    if (shouldChangeStartLocation) {
-      this.dataStreamsService.updateStartLocationStream()
-        .then(r => this.router.navigate(['/start-location']));
-    }
+    const modalRef = this.modalService.open(ConfirmationModalComponent, {centered: true});
+    modalRef.componentInstance.confirmationQuery = 'Are you sure you want to change the start location?';
+    modalRef.result
+            .then(confirmed => {
+              if (confirmed) {
+                this.dataStreamsService.updateStartLocationStream()
+                  .then(() => this.router.navigate(['/start-location']));
+              }
+            });
   }
 
 }

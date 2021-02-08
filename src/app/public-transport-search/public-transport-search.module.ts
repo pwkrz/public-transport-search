@@ -7,10 +7,11 @@ import { StartLocationSelectorComponent } from './views/start-location/start-loc
 import { DestinationSelectorComponent } from './views/destination/destination-selector.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PlaceSelectorModule } from './components/place-selector/place-selector.module';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
-    PublicTransportSearchComponent, StartLocationSelectorComponent, DestinationSelectorComponent, NavbarComponent
+    PublicTransportSearchComponent, StartLocationSelectorComponent, DestinationSelectorComponent, NavbarComponent, ConfirmationModalComponent
   ],
   imports: [
     CommonModule,

@@ -14,7 +14,6 @@ export class StartLocationGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       const startLocation = this.dataStorageService.getStartLocation();
-      console.log('guard', startLocation);
       if (!startLocation) {
         return true;
       }
